@@ -94,7 +94,7 @@ def main():
 
         choice = input("Enter your choice: ")
 
-        if choice == '1':
+        if choice == '1':                                                             #1 for logging
             if logged_in_user:
                 print("You are already logged in.")
             else:
@@ -105,7 +105,7 @@ def main():
                     print("Login successful.")
                 else:
                     print("Invalid username or password.")
-        elif choice == '2':
+        elif choice == '2':                                                          #2 add a book
             if logged_in_user:
                 title = input("Enter the title of the book: ")
                 author = input("Enter the author of the book: ")
@@ -113,40 +113,40 @@ def main():
                 library.add_book(new_book)
             else:
                 print("You need to log in to add a book.")
-        elif choice == '3':
+        elif choice == '3':                                                         #3 remove a book
             if logged_in_user:
                 title = input("Enter the title of the book to remove: ")
                 library.remove_book(title)
             else:
                 print("You need to log in to remove a book.")
-        elif choice == '4':
+        elif choice == '4':                                                         #4 display available books
             for i in range(5):
                 print(List_of_books.Books[i],"\t",List_of_books.Author[i])
-        elif choice == '5':
+        elif choice == '5':                                                         #5 search for a book
             query = input("Enter title or author to search: ")
             library.search_book(query)
-        elif choice == '6':
+        elif choice == '6':                                                         #6 borrow book
             if logged_in_user:
                 title = input("Enter the title of the book to borrow: ")
                 library.borrow_book(title, logged_in_user)
             else:
                 print("You need to log in to borrow a book.")
-        elif choice == '7':
+        elif choice == '7':                                                         #7 return book
             if logged_in_user:
                 title = input("Enter the title of the book to return: ")
                 library.return_book(title, logged_in_user)
             else:
                 print("You need to log in to return a book.")
-        elif choice == '8':
+        elif choice == '8':                                                        #8 show borrowed books
             if logged_in_user:
                 for key, value in library.borrowed_books.items():
                     print(f"book: {key}, info: {value}")
             else:
                 print("You need to log in to see your borrowed books.")
-        elif choice == '9':
+        elif choice == '9':                                                        #9 logged out 
             logged_in_user = None
             print("Logged out.")
-        elif choice == '10':
+        elif choice == '10':                                                       #10 exiting 
             print("Exiting...")
             break
         else:
