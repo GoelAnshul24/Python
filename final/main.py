@@ -1,110 +1,61 @@
-class Library:
-    def __init__(self, listofBooks):
-        # Initialize the Library object with a list of books
-        self.books = listofBooks
+from project import login
+from project import add_item
+from project import view_cart
+from project import search_item
+from project import update_quantity
+from project import remove_item
+from project import checkout
 
-    def displayAvailableBooks(self):
-        # Display the number and names of available books in the library
-        print(f"\n{len(self.books)} AVAILABLE BOOKS ARE: ")
-        for book in self.books:
-            print(" -- " + book)
-        print("\n")
+while True:
+        print("Welcome to the Shopping Cart:")                         # Welcome to the Shopping Cart:
+        print("1. Login")                                              # 1. Login
+        print("2. Add items to the cart")                              # 2. Add items to the cart
+        print("3. View cart")                                          # 3. View cart
+        print("4. Search for a item in the cart")                      # 4. Search for a item in the cart
+        print("5. Update product quantity in the cart")                # 5. Update product quantity in the cart
+        print("6. Remove a product from the cart")                     # 6. Remove a product from the cart
+        print("7. Checkout")                                           # 7. Checkout
+        print("8. Exit")                                               # 8. Exit
 
-    def borrowBook(self, name, bookname):
-        # Borrow a book from the library
-        if bookname not in self.books:
-            print(f"{bookname} BOOK NOT AVAILABLE !\n")
-        else:
-            # Add borrower's name and book name to the tracking list
-            track.append({name: bookname})
-            print("BOOK ISSUED SUCCESSFULLY.\n")
-            # Remove the borrowed book from the library
-            self.books.remove(bookname)
+        choice = int(input("Enter your choice: "))                     # Enter your choice: 1
 
-    def returnBook(self, bookname):
-        # Return a borrowed book to the library
-        print("BOOK RETURNED : THANK YOU! \n")
-        # Add the returned book back to the library
-        self.books.append(bookname)
-
-    def donateBook(self, bookname):
-        # Donate a book to the library
-        print("BOOK DONATED\n")
-        # Add the donated book to the library
-        self.books.append(bookname)
-
-
-class Student():
-    def requestBook(self):
-        # Prompt the student to request a book for borrowing
-        print("Which book would you like to borrow?")
-        self.book = input("Enter the name of the book you want to borrow: ")
-        return self.book
-
-    def returnBook(self):
-        # Prompt the student to return a borrowed book
-        print("Please fill in your details to proceed")
-        name = input("Enter your name: ")
-        self.book = input("Enter the name of the book you want to return: ")
-        if {name: self.book} in track:
-            # Remove the returned book from the tracking list
-            track.remove({name: self.book})
-        return self.book
-
-    def donateBook(self):
-        # Prompt the student to donate a book to the library
-        print("Thank you for choosing to donate!")
-        self.book = input("Enter the name of the book you want to donate: ")
-        return self.book
-
-
-if __name__ == "__main__":
-
-    # Initialize the library with initial list of books
-    UPESlibrary = Library(
-        ["Spiderlight", "Neverwhere", "Berserk", "Ellen", "Circe", "Frankeistein"])
-    # Create an instance of Student class
-    student = Student()
-    # Initialize the tracking list for borrowed books
-    track = []
-
-    # Display welcome message and options menu
-    print("\t\t\t\t\t\t\t WELCOME TO THE UPES LIBRARY \n")
-    print("""CHOOSE WHAT YOU WANT TO DO:-\n1. List all books\n2. Borrow books\n3. Return books\n4. Donate books\n5. Track books\n6. Exit the library\n""")
-
-    # Continuously prompt the user for input until they choose to exit
-    while (True):
-        try:
-            usr_response = int(input("Enter your choice: "))
-
-            # Perform actions based on user's choice
-            if usr_response == 1:  
-                UPESlibrary.displayAvailableBooks()
-            elif usr_response == 2: 
-                UPESlibrary.borrowBook(
-                    input("Enter your name: "), student.requestBook())
-            elif usr_response == 3:
-                UPESlibrary.returnBook(student.returnBook())
-            elif usr_response == 4:
-                UPESlibrary.donateBook(student.donateBook())
-            elif usr_response == 5:
-                # Display all currently borrowed books and borrowers
-                for i in track:
-                    for key, value in i.items():
-                        holder = key
-                        book = value
-                        print(f"{book} book is taken/issued by {holder}.")
-                print("\n")
-                # Display a message if no books are currently borrowed
-                if len(track) == 0:
-                    print("NO BOOKS ARE ISSUED!. \n")
-            
-            elif usr_response == 6:
-                # Exit the program
-                print("THANK YOU! \n")
-                exit()
+        if choice == 1:
+            if login():
+                                                                            # If login is successful and returns true
+                while True:
+                    print("Select what you want to do: ")                   # Select what you want to do:
+                    print("1. Add a product to the cart")                   # 1. Add a product to the cart
+                    print("2. View cart")                                   # 2. View cart
+                    print("3. Search for a product in the cart")            # 3. Search for a product in the cart
+                    print("4. Update product quantity in the cart")         # 4. Update product quantity in the cart
+                    print("5. Remove a product from the cart")              # 5. Remove a product from the cart
+                    print("6. Checkout")                                    # 6. Checkout
+                    print("7. Logout")                                      # 7. Logout
+                    
+                    inner_choice = int(input("Enter your choice: "))        # 7
+                    
+                    if inner_choice == 7:
+                        print("Thank you for using the shopping cart!")     # Thank you for using the shopping cart!
+                        print("Logging out...")                             # Logging out...
+                        break                                               # Logout
+                    elif inner_choice == 1:
+                        add_item()
+                    elif inner_choice == 2:
+                        view_cart()
+                    elif inner_choice == 3:
+                        search_item()
+                    elif inner_choice == 4:
+                        update_quantity()
+                    elif inner_choice == 5:
+                        remove_item()
+                    elif inner_choice == 6:
+                        checkout()
+                    else:
+                        print("Invalid choice. Please try again.\n")
             else:
-                print("INVALID INPUT! \n")
-        except Exception as e:
-            # Handle exceptions for invalid inputs
-            print(f"{e}---> INVALID INPUT! \n")
+                continue  # Retry login if unsuccessful
+        elif choice == 8:
+            print("Exiting...")
+            break
+        else:
+            print("Please login first.")
